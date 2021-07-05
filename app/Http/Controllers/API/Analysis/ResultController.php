@@ -27,7 +27,7 @@ class ResultController extends Controller
     public function chartByAlternative()
     {
         $criterias = Criteria::orderBy('code', 'asc')->get();
-        $alternatives = Alternative::orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id',1)->orderBy('code', 'asc')->get();
         return ByAlternativeResource::collection($alternatives)->additional([
             'criterias' => CriteriaResource::collection($criterias),
             'alternatives' => AlternativeResource::collection($alternatives)

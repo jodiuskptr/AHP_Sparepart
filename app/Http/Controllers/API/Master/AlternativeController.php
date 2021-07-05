@@ -12,7 +12,7 @@ class AlternativeController extends Controller
 {
     public function index()
     {
-        $alternatives = Alternative::orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id',1f)->orderBy('code', 'asc')->get();
         return AlternativeResource::collection($alternatives);
     }
 

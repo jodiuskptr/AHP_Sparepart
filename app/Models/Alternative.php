@@ -9,7 +9,7 @@ class Alternative extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['code', 'name','kategori_id'];
     protected $dates = ['deleted_at'];
 
     public function getCodeAttribute($value) {
