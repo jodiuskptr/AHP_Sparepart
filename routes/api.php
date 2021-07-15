@@ -24,16 +24,17 @@ Route::namespace('API')->group(function () {
         Route::get('alternative/detail', 'AlternativeDetailController@index');
         Route::post('alternative/detail', 'AlternativeDetailController@add');
         Route::get('rating-scales', 'RatingScaleController@index');
+        Route::get('criteria/kategori', 'CriteriaController@comboBox');
     });
 
     Route::namespace('Analysis')->prefix('analysis')->group(function () {
-        Route::namespace('Criteria')->prefix('criteria')->group(function() {
+        Route::namespace('Criteria')->prefix('criteria')->group(function () {
             Route::get('', 'CriteriaComparisonController@index');
             Route::post('', 'CriteriaComparisonController@store');
             Route::get('result', 'CriteriaAnalysisController@index');
             Route::post('result', 'CriteriaAnalysisController@result');
         });
-        Route::namespace('Alternative')->prefix('alternative')->group(function() {
+        Route::namespace('Alternative')->prefix('alternative')->group(function () {
             Route::get('', 'AlternativeComparisonController@index');
             Route::post('', 'AlternativeComparisonController@store');
             Route::post('/{criteria}', 'AlternativeAnalysisController@analyze');

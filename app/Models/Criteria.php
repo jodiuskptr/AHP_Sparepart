@@ -9,30 +9,36 @@ class Criteria extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['code', 'name', 'kategori_id'];
     protected $dates = ['deleted_at'];
 
-    public function comparisons() {
+    public function comparisons()
+    {
         return $this->hasMany(CriteriaComparison::class, 'first_criteria_id')->orderBy('second_criteria_id', 'asc');
     }
 
-    public function comparisonsX() {
+    public function comparisonsX()
+    {
         return $this->hasMany(CriteriaComparison::class, 'first_criteria_id')->orderBy('second_criteria_id', 'asc');
     }
 
-    public function comparisonsY() {
+    public function comparisonsY()
+    {
         return $this->hasMany(CriteriaComparison::class, 'second_criteria_id');
     }
 
-    public function priority() {
+    public function priority()
+    {
         return $this->hasOne(CriteriaPriority::class);
     }
 
-    public function alternativeComparisons() {
+    public function alternativeComparisons()
+    {
         return $this->hasMany(AlternativeComparison::class);
     }
 
-    public function alternativePriorities() {
+    public function alternativePriorities()
+    {
         return $this->hasMany(AlternativePriority::class);
     }
 }

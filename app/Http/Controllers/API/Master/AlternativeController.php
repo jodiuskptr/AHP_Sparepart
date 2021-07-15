@@ -12,7 +12,7 @@ class AlternativeController extends Controller
 {
     public function index()
     {
-        $alternatives = Alternative::where('kategori_id',1f)->orderBy('code', 'asc')->get();
+        $alternatives = Alternative::all(); //where('kategori_id',)->orderBy('code', 'asc')->get();
         return AlternativeResource::collection($alternatives);
     }
 
@@ -31,7 +31,7 @@ class AlternativeController extends Controller
     public function update(Request $request, Alternative $alternative)
     {
         $request->validate([
-            'code' => 'required|string|max:4|unique:alternatives,code,'.$alternative->id,
+            'code' => 'required|string|max:4|unique:alternatives,code,' . $alternative->id,
             'name' => 'required|string|max:255'
         ]);
 

@@ -7,6 +7,11 @@
                         <div class="card-header border-0 text-center text-sm-left">
                             Pilih Kriteria
                         </div>
+                        <div class="card-header border-0 text-center text-sm-left">
+                            <select class="form-control" v-model="selectedKategori" >
+                                <option v-for="item in kategori" :key="item.id " :value="item.id">{{ item.nama }}</option>
+                            </select>
+                        </div>
                         <div class="card-body p-0">
                             <table class="table table-hover">
                                 <tbody>
@@ -103,6 +108,8 @@ export default {
             comparisons: [],
             alternatives: [],
             criterias: [],
+            kategori: [],
+            selectedKategori: null,
             selectedCriteria: '',
             form: new Form({
                 id: '',
@@ -135,17 +142,23 @@ export default {
     watch: {
         selectedCriteria: function(value) {
             this.form.criteria_id = value.id
+        },
+        selectKategori: function(value) {
+            this.form.criteria_id = value.id
         }
     },
     methods: {
         init() {
-            axios.all([this.getScales(), this.getAlternative(), this.getCriteria(), this.getComparison()])
+            axios.all([this.getScales(), this.getAlternative(), this.getCriteria(), this.getComparison(), this.getSample()])
         },
         getScales() {
             axios.get('/rating-scales').then(({ data }) => { this.scales = data.data })
         },
         getAlternative() {
-            axios.get('/alternatives').then(({ data }) => { this.alternatives = data.data })
+            axios.get('/alternatives').then(({ data }) => { 
+                this.alternatives = data.data ;
+               
+            })
         },
         getCriteria() {
             axios.get('/criterias').then(({ data }) => { this.criterias = data.data, this.selectedCriteria = data.data[0] })
@@ -153,7 +166,9 @@ export default {
         getComparison() {
             axios.get('/analysis/alternative').then(({ data }) => { this.comparisons = data.data })
         },
-
+        getSample() {
+            axios.get('/criteria/kategori').then(({ data }) => { this.kategori = data })
+        },
         getValue(x, y) {
             let data = this.alternativeComparison.filter(item => {
                 return item.x_alternative_id == x && item.y_alternative_id == y

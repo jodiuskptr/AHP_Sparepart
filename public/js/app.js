@@ -95738,7 +95738,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Alternatif / Wisma")]),
+      _c("h5", { staticClass: "modal-title" }, [
+        _vm._v("Alternatif / Spare Part")
+      ]),
       _vm._v(" "),
       _c(
         "button",
@@ -95859,7 +95861,7 @@ var content = __webpack_require__(202);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("0105792e", content, false, {});
+var update = __webpack_require__(7)("accf1a08", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98247,7 +98249,7 @@ var content = __webpack_require__(228);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("476c2b8d", content, false, {});
+var update = __webpack_require__(7)("861ba640", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98378,6 +98380,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -98387,6 +98394,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             comparisons: [],
             alternatives: [],
             criterias: [],
+            kategori: [],
+            selectedKategori: null,
             selectedCriteria: '',
             form: new Form({
                 id: '',
@@ -98424,11 +98433,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         selectedCriteria: function selectedCriteria(value) {
             this.form.criteria_id = value.id;
+        },
+        selectKategori: function selectKategori(value) {
+            this.form.criteria_id = value.id;
         }
     },
     methods: {
         init: function init() {
-            axios.all([this.getScales(), this.getAlternative(), this.getCriteria(), this.getComparison()]);
+            axios.all([this.getScales(), this.getAlternative(), this.getCriteria(), this.getComparison(), this.getSample()]);
         },
         getScales: function getScales() {
             var _this3 = this;
@@ -98443,6 +98455,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/alternatives').then(function (_ref2) {
                 var data = _ref2.data;
+
                 _this4.alternatives = data.data;
             });
         },
@@ -98462,6 +98475,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this6.comparisons = data.data;
             });
         },
+        getSample: function getSample() {
+            var _this7 = this;
+
+            axios.get('/criteria/kategori').then(function (_ref5) {
+                var data = _ref5.data;
+                _this7.kategori = data;
+            });
+        },
         getValue: function getValue(x, y) {
             var data = this.alternativeComparison.filter(function (item) {
                 return item.x_alternative_id == x && item.y_alternative_id == y;
@@ -98479,29 +98500,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         setValue: function setValue() {
-            var _this7 = this;
+            var _this8 = this;
 
-            this.form.post('/analysis/alternative').then(function (_ref5) {
-                var data = _ref5.data;
+            this.form.post('/analysis/alternative').then(function (_ref6) {
+                var data = _ref6.data;
 
-                _this7.form.reset();
-                _this7.form.clear();
-                _this7.form.criteria_id = _this7.selectedCriteria.id;
-                _this7.getComparison();
+                _this8.form.reset();
+                _this8.form.clear();
+                _this8.form.criteria_id = _this8.selectedCriteria.id;
+                _this8.getComparison();
                 toast({ type: 'success', text: data.message });
             });
         },
         analyze: function analyze() {
-            var _this8 = this;
+            var _this9 = this;
 
             this.analiting = true;
             axios.post('/analysis/alternative/' + this.selectedCriteria.id).then(function () {
-                return _this8.$router.push({ name: 'analysis.alternative.byCriteria', params: { criteriaId: _this8.selectedCriteria.id } });
-            }).catch(function (_ref6) {
-                var response = _ref6.response;
+                return _this9.$router.push({ name: 'analysis.alternative.byCriteria', params: { criteriaId: _this9.selectedCriteria.id } });
+            }).catch(function (_ref7) {
+                var response = _ref7.response;
                 return toast({ type: 'error', text: response.data });
             }).then(function () {
-                return _this8.analiting = false;
+                return _this9.analiting = false;
             });
         }
     },
@@ -98529,6 +98550,50 @@ var render = function() {
               [
                 _vm._v(
                   "\n                        Pilih Kriteria\n                    "
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-header border-0 text-center text-sm-left" },
+              [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedKategori,
+                        expression: "selectedKategori"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selectedKategori = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  _vm._l(_vm.kategori, function(item) {
+                    return _c(
+                      "option",
+                      { key: item.id, domProps: { value: item.id } },
+                      [_vm._v(_vm._s(item.nama))]
+                    )
+                  }),
+                  0
                 )
               ]
             ),
@@ -100909,7 +100974,7 @@ var render = function() {
           { staticClass: "card-footer text-center py-4" },
           [
             _c("b", [_vm._v("Kesimpulan")]),
-            _vm._v(" : Jadi, wisma yang disarankan oleh system adalah "),
+            _vm._v(" : Jadi, Spare Part yang disarankan oleh sistem adalah "),
             _vm._l(_vm.result, function(item) {
               return _c("b", { key: item.id }, [
                 _c("u", [_vm._v('"' + _vm._s(item.name) + '"')])
@@ -101133,7 +101198,7 @@ var content = __webpack_require__(258);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("b2c97d8a", content, false, {});
+var update = __webpack_require__(7)("9afed3f0", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags

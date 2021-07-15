@@ -8,6 +8,8 @@ use App\Http\Resources\Criteria\CriteriaResource as Resource;
 
 use App\Models\Criteria;
 use App\Models\CriteriaComparison;
+use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
 
 class CriteriaController extends Controller
 {
@@ -15,6 +17,12 @@ class CriteriaController extends Controller
     {
         $criterias = Criteria::all();
         return Resource::collection($criterias);
+    }
+
+    public function comboBox()
+    {
+        $Kategori = DB::table('kategori')->get();
+        return $Kategori;
     }
 
     public function store(Request $request)
@@ -36,7 +44,7 @@ class CriteriaController extends Controller
     public function update(Request $request, Criteria $criteria)
     {
         $request->validate([
-            'code' => 'required|string|max:4|unique:criterias,code,'.$criteria->id,
+            'code' => 'required|string|max:4|unique:criterias,code,' . $criteria->id,
             'name' => 'required|string|max:255'
         ]);
 
