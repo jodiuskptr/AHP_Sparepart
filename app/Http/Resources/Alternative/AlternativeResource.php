@@ -18,6 +18,7 @@ class AlternativeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'code' => $this->code,
+            'kategori_id' => $this->kategori_id,
             'detail' => AlternativeDetail::collection($this->details)
         ];
 

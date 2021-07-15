@@ -15,9 +15,9 @@ use App\Models\Criteria;
 
 class ResultController extends Controller
 {
-    public function index()
+    public function index($kategori_id)
     {
-        $alternatives = Alternative::orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id',$kategori_id)->orderBy('code', 'asc')->get();
         $criterias = Criteria::orderBy('code', 'asc')->get();
         return Resource::collection($alternatives)->additional([
             'criterias' => CriteriaResource::collection($criterias)

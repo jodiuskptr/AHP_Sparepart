@@ -5,20 +5,6 @@
                 <div class="card-header d-flex text-center text-sm-left">
                     <link-back></link-back>
                     Bobot Alternative dari sisi <b class="ml-1"> "{{ criteria }}"</b>
-                    <a href="#" class="ml-auto d-none d-sm-inline-block">
-                        <i class="fas fa-undo"></i>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <canvas ref="myChart" style="min-height: 400px"></canvas>
-                </div>
-            </div>
-            <div class="card" style="cursor: pointer" @click="showDetails ? showDetails = false : showDetails = true">
-                <div class="card-header border-0 d-flex">
-                    <span class="mr-1" v-html="showDetails ? 'Sembunyikan' : 'Tampilkan'"></span> Operasi Perhitungan
-                    <a href="#" class="ml-auto d-none d-sm-inline-block text-secondary">
-                        <i class="fas" :class="showDetails ? 'fa-angle-up' : 'fa-angle-down'"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -46,7 +32,7 @@ export default {
     data() {
         return {
             refreshing: false,
-            showDetails: false,
+            showDetails: true,
             criteria: '',
             alternatives: [],
             matrixSumResult: [],
@@ -63,6 +49,9 @@ export default {
         criteriaId() {
             return this.$route.params.criteriaId
         },
+        kategoriId() {
+            return this.$route.params.kategoriId
+        },
         chartLabels() {
             return this.alternatives.map(item => {
                 return item.code + ' - ' + item.name
@@ -76,7 +65,7 @@ export default {
     },
     methods: {
         init() {
-            axios.get('/analysis/alternative/'+this.criteriaId+'/result')
+            axios.get('/analysis/alternative/'+this.kategoriId+'/'+this.criteriaId+'/result')
             .then(({ data }) => {
                 this.alternatives = data.data
                 this.matrixSumResult = data.matrix_sum_result

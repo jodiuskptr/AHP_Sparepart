@@ -10,9 +10,9 @@ use App\Models\Alternative;
 
 class AlternativeController extends Controller
 {
-    public function index()
+    public function index($kategori_id)
     {
-        $alternatives = Alternative::all(); //where('kategori_id',)->orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id',$kategori_id)->orderBy('code', 'asc')->get(); //where('kategori_id',)->orderBy('code', 'asc')->get();
         return AlternativeResource::collection($alternatives);
     }
 

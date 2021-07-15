@@ -13,6 +13,11 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="input-group app-shadow ml-3">
+                                <select class="form-control" v-model="selectedKategori" @change="onChangeKategori($event)">
+                                    <option v-for="item in kategori" :key="item.id " :value="item.id">{{ item.nama }}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-auto d-none d-sm-block">
@@ -102,6 +107,14 @@
                                     <has-error :form="form" field="name"></has-error>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Kategori</label>
+                                <div class="col-md-9">
+                                   <select class="form-control" v-model="form.kategori_id">
+                                    <option v-for="item in kategori" :key="item.id " :value="item.id">{{ item.nama }}</option>
+                                </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -151,13 +164,15 @@ export default {
     data() {
         return {
             keyword: '',
+            kategori: [],
             criterias: [],
             alternatives: [],
             alternativeDetail: [],
             form: new Form({
                 id: '',
                 code: '',
-                name: ''
+                name: '',
+                kategori_id:''
             }),
             detail: new Form({
                 alternative_id: '',
@@ -165,7 +180,8 @@ export default {
                 criteria_id: '',
                 criteria_name: '',
                 value: '',
-            })
+            }),
+            selectedKategori: 1
         }
     },
     computed: {
@@ -177,13 +193,13 @@ export default {
     },
     methods: {
         init() {
-            axios.all([this.getCriteria(), this.getAlternative(), this.getAlternativeDetail()])
+            axios.all([this.getCriteria(), this.getAlternative(), this.getAlternativeDetail(), this.getSample()])
         },
         getCriteria() {
             return axios.get('/criterias').then(({ data }) => { this.criterias = data.data })
         },
         getAlternative() {
-            return axios.get('/alternatives').then(({ data }) => { this.alternatives = data.data })
+            return axios.get('/alternatives/index/'+this.selectedKategori+'').then(({ data }) => { this.alternatives = data.data })
         },
         getAlternativeDetail() {
             return axios.get('/alternative/detail').then(({ data }) => { this.alternativeDetail = data.data })
@@ -195,9 +211,9 @@ export default {
             $('#alternativeModal').modal('show');
         },
         store() {
-            this.form.post('/alternatives')
+            this.form.post('/alternatives/')
             .then(({ data }) => {
-                this.alternatives.push(data.data)
+                this.getAlternative();
                 toast({ type: 'success', text: data.message })
                 $('#alternativeModal').modal('hide');
             })
@@ -267,7 +283,14 @@ export default {
                 this.alternativeDetail = data.data
                 $('.modal').modal('hide')
             })
+        },
+        getSample() {
+            axios.get('/criteria/kategori').then(({ data }) => { this.kategori = data })
+        },
+        onChangeKategori(event) {
+            this.getAlternative();
         }
+
     },
 
     created() {

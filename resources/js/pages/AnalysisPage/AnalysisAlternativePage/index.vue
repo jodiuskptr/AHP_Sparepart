@@ -8,7 +8,7 @@
                             Pilih Kriteria
                         </div>
                         <div class="card-header border-0 text-center text-sm-left">
-                            <select class="form-control" v-model="selectedKategori" >
+                            <select class="form-control" v-model="selectedKategori" @change="onChangeKategori($event)">
                                 <option v-for="item in kategori" :key="item.id " :value="item.id">{{ item.nama }}</option>
                             </select>
                         </div>
@@ -109,7 +109,6 @@ export default {
             alternatives: [],
             criterias: [],
             kategori: [],
-            selectedKategori: null,
             selectedCriteria: '',
             form: new Form({
                 id: '',
@@ -117,7 +116,8 @@ export default {
                 x_alternative_id: '',
                 y_alternative_id: '',
                 value: '',
-            })
+            }),
+            selectedKategori: 1
         }
     },
     computed: {
@@ -155,9 +155,8 @@ export default {
             axios.get('/rating-scales').then(({ data }) => { this.scales = data.data })
         },
         getAlternative() {
-            axios.get('/alternatives').then(({ data }) => { 
+            axios.get('/alternatives/index/'+this.selectedKategori+'').then(({ data }) => {
                 this.alternatives = data.data ;
-               
             })
         },
         getCriteria() {
@@ -197,10 +196,13 @@ export default {
         },
         analyze() {
             this.analiting = true;
-            axios.post('/analysis/alternative/' + this.selectedCriteria.id)
-            .then(() => this.$router.push({ name: 'analysis.alternative.byCriteria', params: { criteriaId: this.selectedCriteria.id } }))
+            axios.post('/analysis/alternative/' +this.selectedKategori+ '/' + this.selectedCriteria.id)
+            .then(() => this.$router.push({ name: 'analysis.alternative.byKategori.byCriteria', params: { kategoriId: this.selectedKategori, criteriaId: this.selectedCriteria.id } }))
             .catch(({ response }) => toast({type: 'error', text: response.data}))
             .then(() => this.analiting = false)
+        },
+        onChangeKategori(event) {
+            this.getAlternative();
         }
     },
     created() {

@@ -16,16 +16,16 @@ use App\Models\IndexRandom;
 
 class AlternativeAnalysisController extends Controller
 {
-    public function analyze(Criteria $criteria)
+    public function analyze($kategori_id, Criteria $criteria)
     {
-        $alternatives = Alternative::orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id',$kategori_id)->orderBy('code', 'asc')->get();
 
         // Cek apakah nilai matriks perbandingan berpasangan sudah lengkap atau belum
-        $requiredOrdo = pow($alternatives->count(), 2);
-        $availableOrdo = $criteria->alternativeComparisons->count();
-        if ($requiredOrdo != $availableOrdo) {
-            return response()->json('Matriks Perbandingan Berpasangan Belum Lengkap.', 403);
-        }
+        // $requiredOrdo = pow($alternatives->count(), 2);
+        // $availableOrdo = $criteria->alternativeComparisons->count();
+        // if ($requiredOrdo != $availableOrdo) {
+        //     return response()->json('Matriks Perbandingan Berpasangan Belum Lengkap.', 403);
+        // }
 
         foreach ($alternatives as $alternative) {
             $comparisons = $alternative->comparisonsY->where('criteria_id', $criteria->id);
@@ -48,16 +48,16 @@ class AlternativeAnalysisController extends Controller
         return response()->json(200);
     }
 
-    public function result(Criteria $criteria)
+    public function result($kategori_id, Criteria $criteria)
     {
-        $alternatives = Alternative::orderBy('code', 'asc')->get();
+        $alternatives = Alternative::where('kategori_id', $kategori_id)->orderBy('code', 'asc')->get();
 
         // Cek apakah nilai matriks perbandingan berpasangan sudah lengkap atau belum
-        $requiredOrdo = pow($alternatives->count(), 2);
-        $availableOrdo = $criteria->alternativeComparisons->count();
-        if ($requiredOrdo != $availableOrdo) {
-            return response()->json('Matriks Perbandingan Berpasangan Belum Lengkap.', 403);
-        }
+        // $requiredOrdo = pow($alternatives->count(), 2);
+        // $availableOrdo = $criteria->alternativeComparisons->count();
+        // if ($requiredOrdo != $availableOrdo) {
+        //     return response()->json('Matriks Perbandingan Berpasangan Belum Lengkap.', 403);
+        // }
 
         $matrixMultiplication = [];
         foreach ($alternatives as $alternative) {

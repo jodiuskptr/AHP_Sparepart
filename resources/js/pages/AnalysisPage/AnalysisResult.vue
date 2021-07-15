@@ -1,12 +1,12 @@
 <template>
     <section class="content mt-3">
         <div class="container">
-            <div class="card card-info">
+            <select class="form-control" v-model="selectedKategori" @change="onChangeKategori($event)">
+                <option v-for="item in kategori" :key="item.id " :value="item.id">{{ item.nama }}</option>
+            </select>
+            <div class="card card-info mt-3">
                 <div class="card-header d-flex text-center text-sm-left">
                     Hasil / Kesimpulan Akhir
-                    <a href="#" class="ml-auto d-none d-sm-inline-block" @click.prevent="view == 'table' ? view='chart' : view='table' ">
-                        <i class="fas" :class="view == 'table' ? 'fa-chart-bar' : 'fa-table'"></i>
-                    </a>
                 </div>
                 <div class="card-body p-0 table-responsive" v-show="view == 'table'">
                     <table class="table table-hover">
@@ -44,7 +44,9 @@ export default {
         return {
             view: 'table',
             alternatives: [],
-            criterias: []
+            criterias: [],
+            kategori: [],
+            selectedKategori: 1
         }
     },
     watch: {
@@ -81,7 +83,7 @@ export default {
     },
     methods: {
         init() {
-            axios.get('/analysis/result')
+            axios.get('/analysis/result/'+this.selectedKategori)
             .then(({ data }) => {
                 this.alternatives = data.data
                 this.criterias = data.criterias
@@ -134,10 +136,17 @@ export default {
                 data: chartData,
                 options: chartOptions
             });
+        },
+        getSample() {
+            axios.get('/criteria/kategori').then(({ data }) => { this.kategori = data })
+        },
+        onChangeKategori(event) {
+            this.init();
         }
     },
     created() {
         this.init()
+        this.getSample();
     }
 }
 </script>

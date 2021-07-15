@@ -21,6 +21,7 @@ Route::namespace('API')->group(function () {
     Route::namespace('Master')->group(function () {
         Route::apiResource('criterias', 'CriteriaController')->except('show');
         Route::apiResource('alternatives', 'AlternativeController')->except('show');
+        Route::get('alternatives/index/{kategori_id}', 'AlternativeController@index');
         Route::get('alternative/detail', 'AlternativeDetailController@index');
         Route::post('alternative/detail', 'AlternativeDetailController@add');
         Route::get('rating-scales', 'RatingScaleController@index');
@@ -37,10 +38,10 @@ Route::namespace('API')->group(function () {
         Route::namespace('Alternative')->prefix('alternative')->group(function () {
             Route::get('', 'AlternativeComparisonController@index');
             Route::post('', 'AlternativeComparisonController@store');
-            Route::post('/{criteria}', 'AlternativeAnalysisController@analyze');
-            Route::get('/{criteria}/result', 'AlternativeAnalysisController@result');
+            Route::post('/{kategori_id}/{criteria}', 'AlternativeAnalysisController@analyze');
+            Route::get('/{kategori_id}/{criteria}/result', 'AlternativeAnalysisController@result');
         });
-        Route::get('result', 'ResultController@index');
+        Route::get('result/{kategori_id}', 'ResultController@index');
         Route::get('result/by-alternative', 'ResultController@chartByAlternative');
     });
 });

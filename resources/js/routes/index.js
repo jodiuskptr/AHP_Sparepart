@@ -30,7 +30,7 @@ const router = new Router({
             { path: 'criterias', name: 'analysis.criteria', component: AnalysisCriteria },
             { path: 'criteria/result', name: 'analysis.criteria.result', component: AnalysisCriteriaResult },
             { path: 'alternatives', name: 'analysis.alternative', component: AnalysisAlternative },
-            { path: 'alternative/result/by-criteria-:criteriaId', name: 'analysis.alternative.byCriteria', component: AnalisisAlternativeResult },
+            { path: 'alternative/result/by-kategori-:kategoriId/by-criteria-:criteriaId', name: 'analysis.alternative.byKategori.byCriteria', component: AnalisisAlternativeResult },
             { path: 'result', name: 'analysis.result', component: AnalysisResult }
         ]},
         { path: '/admin', component: Admin, children: [

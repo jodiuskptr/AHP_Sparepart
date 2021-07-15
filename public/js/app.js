@@ -90607,7 +90607,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         return { x: 0, y: 0 };
     },
 
-    routes: [{ path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_2__pages_HomePage___default.a }, { path: '/analysis', component: __WEBPACK_IMPORTED_MODULE_7__pages_AnalysisPage___default.a, children: [{ path: 'criterias', name: 'analysis.criteria', component: __WEBPACK_IMPORTED_MODULE_8__pages_AnalysisPage_AnalysisCriteriaPage___default.a }, { path: 'criteria/result', name: 'analysis.criteria.result', component: __WEBPACK_IMPORTED_MODULE_9__pages_AnalysisPage_AnalysisCriteriaPage_Result___default.a }, { path: 'alternatives', name: 'analysis.alternative', component: __WEBPACK_IMPORTED_MODULE_10__pages_AnalysisPage_AnalysisAlternativePage___default.a }, { path: 'alternative/result/by-criteria-:criteriaId', name: 'analysis.alternative.byCriteria', component: __WEBPACK_IMPORTED_MODULE_11__pages_AnalysisPage_AnalysisAlternativePage_Result___default.a }, { path: 'result', name: 'analysis.result', component: __WEBPACK_IMPORTED_MODULE_12__pages_AnalysisPage_AnalysisResult___default.a }] }, { path: '/admin', component: __WEBPACK_IMPORTED_MODULE_3__pages_Admin___default.a, children: [{ path: '', redirect: 'dashboard' }, { path: 'dashboard', name: 'admin.dashboard', component: __WEBPACK_IMPORTED_MODULE_4__pages_Admin_DashboardPage___default.a }, { path: 'criterias', name: 'admin.criterias', component: __WEBPACK_IMPORTED_MODULE_5__pages_Admin_CriteriaPage___default.a }, { path: 'alternatives', name: 'admin.alternatives', component: __WEBPACK_IMPORTED_MODULE_6__pages_Admin_AlternativePage___default.a }] }]
+    routes: [{ path: '/home', name: 'home', component: __WEBPACK_IMPORTED_MODULE_2__pages_HomePage___default.a }, { path: '/analysis', component: __WEBPACK_IMPORTED_MODULE_7__pages_AnalysisPage___default.a, children: [{ path: 'criterias', name: 'analysis.criteria', component: __WEBPACK_IMPORTED_MODULE_8__pages_AnalysisPage_AnalysisCriteriaPage___default.a }, { path: 'criteria/result', name: 'analysis.criteria.result', component: __WEBPACK_IMPORTED_MODULE_9__pages_AnalysisPage_AnalysisCriteriaPage_Result___default.a }, { path: 'alternatives', name: 'analysis.alternative', component: __WEBPACK_IMPORTED_MODULE_10__pages_AnalysisPage_AnalysisAlternativePage___default.a }, { path: 'alternative/result/by-kategori-:kategoriId/by-criteria-:criteriaId', name: 'analysis.alternative.byKategori.byCriteria', component: __WEBPACK_IMPORTED_MODULE_11__pages_AnalysisPage_AnalysisAlternativePage_Result___default.a }, { path: 'result', name: 'analysis.result', component: __WEBPACK_IMPORTED_MODULE_12__pages_AnalysisPage_AnalysisResult___default.a }] }, { path: '/admin', component: __WEBPACK_IMPORTED_MODULE_3__pages_Admin___default.a, children: [{ path: '', redirect: 'dashboard' }, { path: 'dashboard', name: 'admin.dashboard', component: __WEBPACK_IMPORTED_MODULE_4__pages_Admin_DashboardPage___default.a }, { path: 'criterias', name: 'admin.criterias', component: __WEBPACK_IMPORTED_MODULE_5__pages_Admin_CriteriaPage___default.a }, { path: 'alternatives', name: 'admin.alternatives', component: __WEBPACK_IMPORTED_MODULE_6__pages_Admin_AlternativePage___default.a }] }]
 });
 
 router.beforeResolve(function (to, from, next) {
@@ -95013,18 +95013,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             keyword: '',
+            kategori: [],
             criterias: [],
             alternatives: [],
             alternativeDetail: [],
             form: new Form({
                 id: '',
                 code: '',
-                name: ''
+                name: '',
+                kategori_id: ''
             }),
             detail: new Form({
                 alternative_id: '',
@@ -95032,7 +95047,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 criteria_id: '',
                 criteria_name: '',
                 value: ''
-            })
+            }),
+            selectedKategori: 1
         };
     },
 
@@ -95047,7 +95063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         init: function init() {
-            axios.all([this.getCriteria(), this.getAlternative(), this.getAlternativeDetail()]);
+            axios.all([this.getCriteria(), this.getAlternative(), this.getAlternativeDetail(), this.getSample()]);
         },
         getCriteria: function getCriteria() {
             var _this2 = this;
@@ -95060,7 +95076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getAlternative: function getAlternative() {
             var _this3 = this;
 
-            return axios.get('/alternatives').then(function (_ref2) {
+            return axios.get('/alternatives/index/' + this.selectedKategori + '').then(function (_ref2) {
                 var data = _ref2.data;
                 _this3.alternatives = data.data;
             });
@@ -95082,10 +95098,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         store: function store() {
             var _this5 = this;
 
-            this.form.post('/alternatives').then(function (_ref4) {
+            this.form.post('/alternatives/').then(function (_ref4) {
                 var data = _ref4.data;
 
-                _this5.alternatives.push(data.data);
+                _this5.getAlternative();
                 toast({ type: 'success', text: data.message });
                 $('#alternativeModal').modal('hide');
             }).catch(function () {});
@@ -95157,6 +95173,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this8.alternativeDetail = data.data;
                 $('.modal').modal('hide');
             });
+        },
+        getSample: function getSample() {
+            var _this9 = this;
+
+            axios.get('/criteria/kategori').then(function (_ref8) {
+                var data = _ref8.data;
+                _this9.kategori = data;
+            });
+        },
+        onChangeKategori: function onChangeKategori(event) {
+            this.getAlternative();
         }
     },
 
@@ -95209,6 +95236,51 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _vm._m(0)
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group app-shadow ml-3" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selectedKategori,
+                          expression: "selectedKategori"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.selectedKategori = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          function($event) {
+                            return _vm.onChangeKategori($event)
+                          }
+                        ]
+                      }
+                    },
+                    _vm._l(_vm.kategori, function(item) {
+                      return _c(
+                        "option",
+                        { key: item.id, domProps: { value: item.id } },
+                        [_vm._v(_vm._s(item.nama))]
+                      )
+                    }),
+                    0
+                  )
                 ])
               ])
             ]),
@@ -95545,6 +95617,59 @@ var render = function() {
                           ],
                           1
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-sm-3 col-form-label" },
+                          [_vm._v("Kategori")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-9" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.kategori_id,
+                                  expression: "form.kategori_id"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "kategori_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.kategori, function(item) {
+                              return _c(
+                                "option",
+                                { key: item.id, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.nama))]
+                              )
+                            }),
+                            0
+                          )
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -95861,7 +95986,7 @@ var content = __webpack_require__(202);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("accf1a08", content, false, {});
+var update = __webpack_require__(7)("0105792e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98249,7 +98374,7 @@ var content = __webpack_require__(228);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("861ba640", content, false, {});
+var update = __webpack_require__(7)("476c2b8d", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98395,7 +98520,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             alternatives: [],
             criterias: [],
             kategori: [],
-            selectedKategori: null,
             selectedCriteria: '',
             form: new Form({
                 id: '',
@@ -98403,7 +98527,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 x_alternative_id: '',
                 y_alternative_id: '',
                 value: ''
-            })
+            }),
+            selectedKategori: 1
         };
     },
 
@@ -98453,7 +98578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getAlternative: function getAlternative() {
             var _this4 = this;
 
-            axios.get('/alternatives').then(function (_ref2) {
+            axios.get('/alternatives/index/' + this.selectedKategori + '').then(function (_ref2) {
                 var data = _ref2.data;
 
                 _this4.alternatives = data.data;
@@ -98516,14 +98641,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this9 = this;
 
             this.analiting = true;
-            axios.post('/analysis/alternative/' + this.selectedCriteria.id).then(function () {
-                return _this9.$router.push({ name: 'analysis.alternative.byCriteria', params: { criteriaId: _this9.selectedCriteria.id } });
+            axios.post('/analysis/alternative/' + this.selectedKategori + '/' + this.selectedCriteria.id).then(function () {
+                return _this9.$router.push({ name: 'analysis.alternative.byKategori.byCriteria', params: { kategoriId: _this9.selectedKategori, criteriaId: _this9.selectedCriteria.id } });
             }).catch(function (_ref7) {
                 var response = _ref7.response;
                 return toast({ type: 'error', text: response.data });
             }).then(function () {
                 return _this9.analiting = false;
             });
+        },
+        onChangeKategori: function onChangeKategori(event) {
+            this.getAlternative();
         }
     },
     created: function created() {
@@ -98571,19 +98699,24 @@ var render = function() {
                     ],
                     staticClass: "form-control",
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.selectedKategori = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.selectedKategori = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.onChangeKategori($event)
+                        }
+                      ]
                     }
                   },
                   _vm._l(_vm.kategori, function(item) {
@@ -99155,20 +99288,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -99183,7 +99302,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             refreshing: false,
-            showDetails: false,
+            showDetails: true,
             criteria: '',
             alternatives: [],
             matrixSumResult: [],
@@ -99201,6 +99320,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         criteriaId: function criteriaId() {
             return this.$route.params.criteriaId;
         },
+        kategoriId: function kategoriId() {
+            return this.$route.params.kategoriId;
+        },
         chartLabels: function chartLabels() {
             return this.alternatives.map(function (item) {
                 return item.code + ' - ' + item.name;
@@ -99216,7 +99338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         init: function init() {
             var _this = this;
 
-            axios.get('/analysis/alternative/' + this.criteriaId + '/result').then(function (_ref) {
+            axios.get('/analysis/alternative/' + this.kategoriId + '/' + this.criteriaId + '/result').then(function (_ref) {
                 var data = _ref.data;
 
                 _this.alternatives = data.data;
@@ -100492,59 +100614,11 @@ var render = function() {
             _vm._v("\n                Bobot Alternative dari sisi "),
             _c("b", { staticClass: "ml-1" }, [
               _vm._v(' "' + _vm._s(_vm.criteria) + '"')
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
+            ])
           ],
           1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("canvas", {
-            ref: "myChart",
-            staticStyle: { "min-height": "400px" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "card",
-          staticStyle: { cursor: "pointer" },
-          on: {
-            click: function($event) {
-              _vm.showDetails
-                ? (_vm.showDetails = false)
-                : (_vm.showDetails = true)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "card-header border-0 d-flex" }, [
-            _c("span", {
-              staticClass: "mr-1",
-              domProps: {
-                innerHTML: _vm._s(_vm.showDetails ? "Sembunyikan" : "Tampilkan")
-              }
-            }),
-            _vm._v(" Operasi Perhitungan\n                "),
-            _c(
-              "a",
-              {
-                staticClass: "ml-auto d-none d-sm-inline-block text-secondary",
-                attrs: { href: "#" }
-              },
-              [
-                _c("i", {
-                  staticClass: "fas",
-                  class: _vm.showDetails ? "fa-angle-up" : "fa-angle-down"
-                })
-              ]
-            )
-          ])
-        ]
-      )
+        )
+      ])
     ]),
     _vm._v(" "),
     _vm.showDetails
@@ -100594,18 +100668,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "ml-auto d-none d-sm-inline-block", attrs: { href: "#" } },
-      [_c("i", { staticClass: "fas fa-undo" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -100716,7 +100779,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             view: 'table',
             alternatives: [],
-            criterias: []
+            criterias: [],
+            kategori: [],
+            selectedKategori: 1
         };
     },
 
@@ -100758,7 +100823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         init: function init() {
             var _this2 = this;
 
-            axios.get('/analysis/result').then(function (_ref) {
+            axios.get('/analysis/result/' + this.selectedKategori).then(function (_ref) {
                 var data = _ref.data;
 
                 _this2.alternatives = data.data;
@@ -100810,10 +100875,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 data: chartData,
                 options: chartOptions
             });
+        },
+        getSample: function getSample() {
+            var _this3 = this;
+
+            axios.get('/criteria/kategori').then(function (_ref2) {
+                var data = _ref2.data;
+                _this3.kategori = data;
+            });
+        },
+        onChangeKategori: function onChangeKategori(event) {
+            this.init();
         }
     },
     created: function created() {
         this.init();
+        this.getSample();
     }
 });
 
@@ -100827,36 +100904,52 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "content mt-3" }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "card card-info" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedKategori,
+              expression: "selectedKategori"
+            }
+          ],
+          staticClass: "form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedKategori = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                return _vm.onChangeKategori($event)
+              }
+            ]
+          }
+        },
+        _vm._l(_vm.kategori, function(item) {
+          return _c("option", { key: item.id, domProps: { value: item.id } }, [
+            _vm._v(_vm._s(item.nama))
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card card-info mt-3" }, [
         _c(
           "div",
           { staticClass: "card-header d-flex text-center text-sm-left" },
-          [
-            _vm._v(
-              "\n                Hasil / Kesimpulan Akhir\n                "
-            ),
-            _c(
-              "a",
-              {
-                staticClass: "ml-auto d-none d-sm-inline-block",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.view == "table"
-                      ? (_vm.view = "chart")
-                      : (_vm.view = "table")
-                  }
-                }
-              },
-              [
-                _c("i", {
-                  staticClass: "fas",
-                  class: _vm.view == "table" ? "fa-chart-bar" : "fa-table"
-                })
-              ]
-            )
-          ]
+          [_vm._v("\n                Hasil / Kesimpulan Akhir\n            ")]
         ),
         _vm._v(" "),
         _c(
@@ -101198,7 +101291,7 @@ var content = __webpack_require__(258);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("9afed3f0", content, false, {});
+var update = __webpack_require__(7)("b2c97d8a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
