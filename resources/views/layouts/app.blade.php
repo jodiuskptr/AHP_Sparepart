@@ -38,26 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <router-link :to="{ name: 'home' }" class="nav-link">HOME</router-link>
-                </li>
-                <li class="nav-item dropdown d-none d-sm-inline-block">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ANALISIS
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <router-link :to="{ name: 'analysis.criteria' }" class="dropdown-item">
-                            Analisis Kriteria
-                        </router-link>
-                        <router-link :to="{ name: 'analysis.alternative' }" class="dropdown-item">
-                            Analisis Alternatif
-                        </router-link>
-                        <div class="dropdown-divider"></div>
-                        <router-link :to="{ name: 'analysis.result' }" class="dropdown-item">
-                            Hasil Analisis
-                        </router-link>
-                    </div>
-                </li>
+
             </ul>
 
             <a href="{{ url('/') }}" class="brand-link bg-success mx-auto py-0 d-inline-block d-sm-none">
@@ -68,9 +49,12 @@
             {{-- Right Menu --}}
             <ul class="navbar-nav ml-sm-auto">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                        <i class="fas fa-th-large"></i>
-                    </a>
+                    <button class="btn btn-success btn-block" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </button>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </nav>
@@ -92,21 +76,45 @@
                 </div>
 
                 <nav class="mt-2">
+
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-header">DATA MASTER</li>
+                        <li class="nav-header"><b>DATA MASTER</b></li>
+
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'home' }" class="nav-link">
+                                <p>Home</p>
+                            </router-link>
+                        </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'admin.criterias' }" class="nav-link">
-                                <i class="fas fa-database nav-icon"></i>
                                 <p>Data Kriteria</p>
                             </router-link>
                         </li>
+
                         <li class="nav-item">
                             <router-link :to="{ name: 'admin.alternatives' }" class="nav-link">
-                                <i class="fas fa-database nav-icon"></i>
                                 <p>Data Alternatif</p>
                             </router-link>
                         </li>
+
+                        <li class="nav-header"><b>1ANALISIS</b></li>
+
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'analysis.criteria' }" class="nav-link">
+                                <p>Analisis Kriteria</p>
+                        </li>
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'analysis.alternative' }" class="nav-link">
+                                <p>Analisis Alternatif</p>
+                        </li>
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'analysis.result' }" class="nav-link">
+                                <p>Hasil Analisa</p>
+                        </li>
+
+
                     </ul>
+
                 </nav>
             </div>
         </aside>
@@ -149,12 +157,7 @@
                     <h5 class="mb-0">{{ auth()->user()->name }}</h5>
                 </div>
                 <hr class="mt-0">
-                <button class="btn btn-outline-success btn-block" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
-                </button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+
             </div>
         </aside>
         {{-- @include('layouts.footer') --}}
