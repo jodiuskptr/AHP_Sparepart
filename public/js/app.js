@@ -54650,7 +54650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routes__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commons_Confirm__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commons_confirm__ = __webpack_require__(252);
 // Vendor
 __webpack_require__(158);
 window.Vue = __webpack_require__(18);
@@ -54681,7 +54681,7 @@ window.toast = toast;
 // App
 
 
-Vue.prototype.$confirm = new __WEBPACK_IMPORTED_MODULE_3__commons_Confirm__["a" /* default */]();
+Vue.prototype.$confirm = new __WEBPACK_IMPORTED_MODULE_3__commons_confirm__["a" /* default */]();
 
 // Global Components
 Vue.component('btn-default', __webpack_require__(253));
@@ -93974,7 +93974,7 @@ var render = function() {
         "div",
         { staticClass: "card-group" },
         [
-          _c("div", { staticClass: "card card-info d-none d-sm-flex" }, [
+          _c("div", { staticClass: "card bg-success d-none d-sm-flex" }, [
             _vm._m(0),
             _vm._v(" "),
             _c("table", { staticClass: "table" }, [
@@ -93991,7 +93991,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm._l(_vm.alternatives, function(item) {
-            return _c("div", { key: item.id, staticClass: "card card-info" }, [
+            return _c("div", { key: item.id, staticClass: "card bg-success" }, [
               _c("div", { staticClass: "card-header text-center" }, [
                 _c("b", { staticStyle: { "white-space": "nowrap" } }, [
                   _vm._v(_vm._s(item.name))
@@ -102463,7 +102463,7 @@ if (false) {
 /* 274 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import '~admin-lte/build/scss/AdminLTE.scss';\n^\n      File to import not found or unreadable: ~admin-lte/build/scss/AdminLTE.scss.\n      in /home/dendydandees/Project/AHP_Sparepart/resources/sass/main.scss (line 7, column 1)\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/webpack/lib/NormalModule.js:195:19\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.callback (/home/dendydandees/Project/AHP_Sparepart/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.done [as callback] (/home/dendydandees/Project/AHP_Sparepart/node_modules/neo-async/async.js:8069:18)\n    at options.error (/home/dendydandees/Project/AHP_Sparepart/node_modules/node-sass/lib/index.js:294:32)");
 
 /***/ })
 /******/ ]);

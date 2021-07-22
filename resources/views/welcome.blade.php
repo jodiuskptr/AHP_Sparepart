@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title></title>
+    <title>AHP Sparepart - {{ config('app.fullname', '') }}</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
@@ -26,90 +26,40 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <style>
-        html,
-        body {
-            background: #e9ecef;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 50px;
-        }
-
-        .links>a.default {
-            color: #636b6f;
-            padding: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
-<body>
-    <div class="flex-center position-ref full-height">
-        <div class="content">
-            <div class="logo d-none d-sm-block">
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-none d-md-block" href="{{ route('landing_page') }}">Sistem Pendukung Keputusan</a>
+            <a class="navbar-brand d-md-none" href="{{ route('landing_page') }}">SPK</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            </div>
-            <div class="title">
-                SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN SPAREPART MATIC HONDA 110 CC
-            </div>
-            <div class="links">
-                <h2 class="mt-0 mb-4 d-none d-sm-block">
-                    Sistem pendukung keputusan pemilihan sparepart motor matic honda 110 cc merukan sebuah website
-                    yang dimaksudkan untuk membantu para pengguna motor matic honda 110 cc dalam melakukan pemilihan
-                    sparepart fastmoving
-                </h2>
-                @if (Route::has('login'))
-                @auth
-                <a href="{{ url('/home') }}" class="btn btn-lg btn-info">
-                    <span class="mx-5"><i class="fas fa-home mr-1"></i> Home</span>
-                </a>
-                @else
-                <a href="{{ route('login') }}" class="btn btn-lg btn-info">
-                    <span class="mx-5"><i class="fas fa-sign-in-alt mr-1"></i> Login</span>
-                </a>
-                @endauth
-                @endif
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('login') ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('register') ? 'active' : '' }}" href="{{ route('register') }}">Register</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+
+    <div class="container">
+        <div class="w-50 py-5">
+            <h1 class="display-6 font-weight-bold mb-4">Sistem Pendukung Keputusan Pemilihan Sparepart Matic Honda 110cc</h1>
+            <p class="lead">Sistem ini dimaksudkan untuk membantu para pengguna motor matic honda 110cc dalam melakukan pemilihan sparepart fastmoving</p>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 
 </html>

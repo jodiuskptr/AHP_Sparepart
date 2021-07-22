@@ -28,6 +28,6 @@ class CreateIndexRandomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('index_randoms');
+        Schema::dropIfExists('index_random');
     }
 }

@@ -2,7 +2,7 @@
     <section class="content mt-3">
         <div class="container">
             <div class="card-group">
-                <div class="card card-info d-none d-sm-flex">
+                <div class="card bg-success d-none d-sm-flex">
                     <div class="card-header text-center">
                         <b>Detail</b>
                     </div>
@@ -14,7 +14,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card card-info" v-for="item in alternatives" :key="item.id">
+                <div class="card bg-success" v-for="item in alternatives" :key="item.id">
                     <div class="card-header text-center">
                         <b style="white-space: nowrap">{{ item.name }}</b>
                     </div>
