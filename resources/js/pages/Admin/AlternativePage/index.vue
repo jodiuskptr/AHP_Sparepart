@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto d-none d-sm-block">
+                    <div class="col-auto d-none d-sm-block" v-if="user_role == 'admin'">
                         <btn-default :click="create">
                             <i class="fas fa-plus"></i>
                         </btn-default>
@@ -47,7 +47,7 @@
                                     <th>Name</th>
                                     <th class="text-center">Code</th>
                                     <th v-for="item in criterias" :key="item.id" class="text-center">{{ item.name }}</th>
-                                    <th></th>
+                                    <th v-if="user_role == 'admin'"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,7 @@
                                             +
                                         </a>
                                     </td>
-                                    <td class="text-right" nowrap>
+                                    <td class="text-right" nowrap v-if="user_role == 'admin'">
                                         <a href="#" @click.prevent="edit(alternative)" class="text-secondary mx-2">
                                             <i class="far fa-edit"></i>
                                         </a>
@@ -181,7 +181,8 @@ export default {
                 criteria_name: '',
                 value: '',
             }),
-            selectedKategori: 1
+            selectedKategori: 1,
+            user_role: document.querySelector("meta[name='user-role']").getAttribute('content')
         }
     },
     computed: {

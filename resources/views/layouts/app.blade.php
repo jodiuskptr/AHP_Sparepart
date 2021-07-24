@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="api-base-url" content="{{ url('/api') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @if (Auth::check())
+        <meta name="user-role" content="{{ Auth::user()->roles[0]->name }}">
+    @endif
     <title>AHP Sparepart - {{ config('app.fullname', '') }}</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -30,7 +33,7 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<body class="hold-transition sidebar-mini">
     <div id="app" class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-dark bg-success app-shadow">
             {{-- Left Menu --}}
@@ -72,11 +75,12 @@
                     </div>
                     <div class="success">
                         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                        <span class="badge bg-success">{{ Auth::user()->roles[0]->display_name }}</span>
                     </div>
                 </div>
 
                 <nav class="mt-2">
-
+                    @if (Auth::user()->roles[0]->name == 'admin')
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-header"><b>DATA MASTER</b></li>
 
@@ -97,7 +101,7 @@
                             </router-link>
                         </li>
 
-                        <li class="nav-header"><b>1ANALISIS</b></li>
+                        <li class="nav-header"><b>ANALISIS</b></li>
 
                         <li class="nav-item">
                             <router-link :to="{ name: 'analysis.criteria' }" class="nav-link">
@@ -111,10 +115,25 @@
                             <router-link :to="{ name: 'analysis.result' }" class="nav-link">
                                 <p>Hasil Analisa</p>
                         </li>
-
-
                     </ul>
+                    @else
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-header"><b>DATA MASTER</b></li>
 
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'admin.alternatives' }" class="nav-link">
+                                <p>Data Alternatif</p>
+                            </router-link>
+                        </li>
+
+                        <li class="nav-header"><b>ANALISIS</b></li>
+
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'analysis.result' }" class="nav-link">
+                                <p>Hasil Analisa</p>
+                        </li>
+                    </ul>
+                    @endif
                 </nav>
             </div>
         </aside>
