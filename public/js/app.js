@@ -95048,7 +95048,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 criteria_name: '',
                 value: ''
             }),
-            selectedKategori: 1
+            selectedKategori: 1,
+            user_role: document.querySelector("meta[name='user-role']").getAttribute('content')
         };
     },
 
@@ -95285,16 +95286,18 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-auto d-none d-sm-block" },
-              [
-                _c("btn-default", { attrs: { click: _vm.create } }, [
-                  _c("i", { staticClass: "fas fa-plus" })
-                ])
-              ],
-              1
-            )
+            _vm.user_role == "admin"
+              ? _c(
+                  "div",
+                  { staticClass: "col-auto d-none d-sm-block" },
+                  [
+                    _c("btn-default", { attrs: { click: _vm.create } }, [
+                      _c("i", { staticClass: "fas fa-plus" })
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
           ])
         ])
       ]),
@@ -95332,7 +95335,7 @@ var render = function() {
                         )
                       }),
                       _vm._v(" "),
-                      _c("th")
+                      _vm.user_role == "admin" ? _c("th") : _vm._e()
                     ],
                     2
                   )
@@ -95428,44 +95431,50 @@ var render = function() {
                             )
                           }),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { nowrap: "" }
-                            },
-                            [
-                              _c(
-                                "a",
+                          _vm.user_role == "admin"
+                            ? _c(
+                                "td",
                                 {
-                                  staticClass: "text-secondary mx-2",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.edit(alternative)
-                                    }
-                                  }
+                                  staticClass: "text-right",
+                                  attrs: { nowrap: "" }
                                 },
-                                [_c("i", { staticClass: "far fa-edit" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "text-secondary mx-2",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.destroy(alternative.id)
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "far fa-trash-alt" })]
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "text-secondary mx-2",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.edit(alternative)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "far fa-edit" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "text-secondary mx-2",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.destroy(alternative.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "far fa-trash-alt"
+                                      })
+                                    ]
+                                  )
+                                ]
                               )
-                            ]
-                          )
+                            : _vm._e()
                         ],
                         2
                       )
@@ -102463,7 +102472,7 @@ if (false) {
 /* 274 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: \n@import '~admin-lte/build/scss/AdminLTE.scss';\n^\n      File to import not found or unreadable: ~admin-lte/build/scss/AdminLTE.scss.\n      in /home/dendydandees/Project/AHP_Sparepart/resources/sass/main.scss (line 7, column 1)\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/webpack/lib/NormalModule.js:195:19\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/dendydandees/Project/AHP_Sparepart/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.callback (/home/dendydandees/Project/AHP_Sparepart/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.done [as callback] (/home/dendydandees/Project/AHP_Sparepart/node_modules/neo-async/async.js:8069:18)\n    at options.error (/home/dendydandees/Project/AHP_Sparepart/node_modules/node-sass/lib/index.js:294:32)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
