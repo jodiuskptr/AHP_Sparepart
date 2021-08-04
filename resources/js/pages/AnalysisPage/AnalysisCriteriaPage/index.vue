@@ -3,7 +3,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header d-flex text-center text-sm-left">
-                    Mari, mulai analisis kriteria !
+                    Hitung Kriteria
                     <a href="#" class="text-secondary ml-auto">
                         <i class="fas fa-undo"></i>
                     </a>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <btn-default class="ml-auto btn-block-xs" :click="analysis">
-                        Mulai Analisa <i class="fas ml-1" :class="[analiting ? 'fa-spinner fa-spin' : 'fa-chevron-circle-right']"></i>
+                        Hitung <i class="fas ml-1" :class="[analiting ? 'fa-spinner fa-spin' : 'fa-chevron-circle-right']"></i>
                     </btn-default>
                 </div>
             </div>
@@ -143,6 +143,6 @@ export default {
 
 <style lang="scss" scoped>
     .matrix-value:hover {
-        background-color: #bee5eb;
+        background-color: #28A745;
     }
 </style>

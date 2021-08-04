@@ -7,25 +7,17 @@
     <meta name="api-base-url" content="{{ url('/api') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @if (Auth::check())
-        <meta name="user-role" content="{{ Auth::user()->roles[0]->name }}">
+    <meta name="user-role" content="{{ Auth::user()->roles[0]->name }}">
     @endif
     <title>AHP Sparepart - {{ config('app.fullname', '') }}</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/Logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/Logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/Logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/Logo.png">
     <link rel="manifest" href="/favicon/manifest.json">
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -82,7 +74,7 @@
                 <nav class="mt-2">
                     @if (Auth::user()->roles[0]->name == 'admin')
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-header"><b>DATA MASTER</b></li>
+                        <li class="nav-header"><b>DATA</b></li>
 
                         <li class="nav-item">
                             <router-link :to="{ name: 'home' }" class="nav-link">
@@ -101,28 +93,32 @@
                             </router-link>
                         </li>
 
-                        <li class="nav-header"><b>ANALISIS</b></li>
+                        <li class="nav-header"><b>Perhitungan</b></li>
 
                         <li class="nav-item">
                             <router-link :to="{ name: 'analysis.criteria' }" class="nav-link">
-                                <p>Analisis Kriteria</p>
+                                <p>Hitung Kriteria</p>
                         </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'analysis.alternative' }" class="nav-link">
-                                <p>Analisis Alternatif</p>
+                                <p>Hitung Alternatif Sparepart</p>
                         </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'analysis.result' }" class="nav-link">
-                                <p>Hasil Analisa</p>
+                                <p>Rekomendasi Sparepart</p>
                         </li>
                     </ul>
                     @else
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-header"><b>DATA MASTER</b></li>
-
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'home' }" class="nav-link">
+                                <p>Home</p>
+                            </router-link>
+                        </li>
                         <li class="nav-item">
                             <router-link :to="{ name: 'admin.alternatives' }" class="nav-link">
-                                <p>Data Alternatif</p>
+                                <p>Data Sparepart</p>
                             </router-link>
                         </li>
 
@@ -130,7 +126,7 @@
 
                         <li class="nav-item">
                             <router-link :to="{ name: 'analysis.result' }" class="nav-link">
-                                <p>Hasil Analisa</p>
+                                <p>Rekomendasi Sparepart</p>
                         </li>
                     </ul>
                     @endif
@@ -142,7 +138,7 @@
             @yield('content')
         </div>
 
-        <nav class="navbar fixed-bottom footbar bg-white p-0 d-flex d-sm-none" style="border-top: 1px solid #dee2e6">
+        <nav class="navbar fixed-bottom footbar bg-white p-0 d-flex d-sm-none" style="border-top: 1px solid #84cc90">
             <div class="col text-center">
                 <router-link :to="{ name: 'home' }" class="navbar-brand text-secondary">
                     <i class="fas fa-home"></i>

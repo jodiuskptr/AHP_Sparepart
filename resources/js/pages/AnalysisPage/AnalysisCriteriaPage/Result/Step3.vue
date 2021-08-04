@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            Step 3 - Priority Vector
+            Step 3 - Eigen Vector
         </div>
         <div class="card-body p-0 table-responsive">
             <table class="table table-hover">
@@ -9,7 +9,7 @@
                     <tr>
                         <th class="text-center">Kriteria</th>
                         <th class="text-center" v-for="item in criterias" :key="item.id">{{ item.code }}</th>
-                        <th class="text-center">PV</th>
+                        <th class="text-center">EV</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -4,22 +4,22 @@
             Step 5 - Pengujian Konsistensi
         </div>
         <div class="p-3 bg-light">
-            Perhitungan Weight Sum Vector <b>( λ maksimum )</b>
+            Perhitungan Weight Sum Vector 
         </div>
         <div class="card-body">
             <p>
-                <span class="font-weight-bold">λmax = ( Hasil kali matriks / PV ) / n </span>
+                <span class="font-weight-bold">W = ( Hasil kali matriks / EV ) / n </span>
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 <span v-for="(item, index) in criterias" :key="item.id">({{ result[index] }} / {{ item.pv }}) <span v-if="index < criterias.length - 1"> + </span> </span> / {{ criterias.length }}
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 <span v-for="(item, index) in lambda" :key="index">{{ item }} <span v-if="index < lambda.length - 1"> + </span> </span> / {{ criterias.length }}
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 {{ lambdaTotal }} / {{ criterias.length }} = <b><u>{{ lambdaMax }}</u></b>
             </p>
         </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
             <p>
-                <span class="font-weight-bold">CI = (λmax - n) / (n - 1) </span>
+                <span class="font-weight-bold">CI = (W - n) / (n - 1) </span>
             </p>
             <p>
                 <span class="font-weight-bold">CI = </span>

@@ -1,33 +1,6 @@
 <template>
     <section class="content mt-3">
-        <div class="container">
-            <div class="card-group">
-                <div class="card bg-success d-none d-sm-flex">
-                    <div class="card-header text-center">
-                        <b>Detail</b>
-                    </div>
-                    <table class="table">
-                        <tbody>
-                            <tr v-for="item in criterias" :key="item.id">
-                                <td>{{ item.name }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card bg-success" v-for="item in alternatives" :key="item.id">
-                    <div class="card-header text-center">
-                        <b style="white-space: nowrap">{{ item.name }}</b>
-                    </div>
-                    <table class="table">
-                        <tbody>
-                            <tr v-for="detail in item.detail" :key="detail.criteria_id">
-                                <td class="text-center">{{ detail.value }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+     
     </section>
 </template>
 

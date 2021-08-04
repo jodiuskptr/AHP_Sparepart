@@ -11,7 +11,7 @@
                         <td class="text-center" :rowspan="alternatives.length + 1" style="vertical-align: middle">
                             x
                         </td>
-                        <th class="text-center">PV</th>
+                        <th class="text-center">EV</th>
                         <td class="text-center" :rowspan="alternatives.length + 1" style="vertical-align: middle">
                             =
                         </td>

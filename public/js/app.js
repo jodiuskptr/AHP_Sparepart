@@ -93836,33 +93836,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -93968,67 +93941,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "content mt-3" }, [
-    _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        { staticClass: "card-group" },
-        [
-          _c("div", { staticClass: "card bg-success d-none d-sm-flex" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("table", { staticClass: "table" }, [
-              _c(
-                "tbody",
-                _vm._l(_vm.criterias, function(item) {
-                  return _c("tr", { key: item.id }, [
-                    _c("td", [_vm._v(_vm._s(item.name))])
-                  ])
-                }),
-                0
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.alternatives, function(item) {
-            return _c("div", { key: item.id, staticClass: "card bg-success" }, [
-              _c("div", { staticClass: "card-header text-center" }, [
-                _c("b", { staticStyle: { "white-space": "nowrap" } }, [
-                  _vm._v(_vm._s(item.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("table", { staticClass: "table" }, [
-                _c(
-                  "tbody",
-                  _vm._l(item.detail, function(detail) {
-                    return _c("tr", { key: detail.criteria_id }, [
-                      _c("td", { staticClass: "text-center" }, [
-                        _vm._v(_vm._s(detail.value))
-                      ])
-                    ])
-                  }),
-                  0
-                )
-              ])
-            ])
-          })
-        ],
-        2
-      )
-    ])
-  ])
+  return _c("section", { staticClass: "content mt-3" })
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header text-center" }, [
-      _c("b", [_vm._v("Detail")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -95995,7 +95910,7 @@ var content = __webpack_require__(202);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("0105792e", content, false, {});
+var update = __webpack_require__(7)("accf1a08", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -96019,7 +95934,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.matrix-value[data-v-1fd1db38]:hover {\n  background-color: #bee5eb;\n}\n", ""]);
+exports.push([module.i, "\n.matrix-value[data-v-1fd1db38]:hover {\n  background-color: #28A745;\n}\n", ""]);
 
 // exports
 
@@ -96571,7 +96486,7 @@ var render = function() {
                 attrs: { click: _vm.analysis }
               },
               [
-                _vm._v("\n                    Mulai Analisa "),
+                _vm._v("\n                    Hitung "),
                 _c("i", {
                   staticClass: "fas ml-1",
                   class: [
@@ -96598,9 +96513,7 @@ var staticRenderFns = [
       "div",
       { staticClass: "card-header d-flex text-center text-sm-left" },
       [
-        _vm._v(
-          "\n                Mari, mulai analisis kriteria !\n                "
-        ),
+        _vm._v("\n                Hitung Kriteria\n                "),
         _c(
           "a",
           { staticClass: "text-secondary ml-auto", attrs: { href: "#" } },
@@ -96778,8 +96691,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: labels,
                 datasets: [{
                     label: 'Kriteria',
-                    borderColor: '#bee5eb',
-                    backgroundColor: '#bee5eb',
+                    borderColor: '#28A745',
+                    backgroundColor: '#28A745',
                     data: value
                 }]
             };
@@ -97284,7 +97197,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n        Step 3 - Priority Vector\n    ")
+      _vm._v("\n        Step 3 - Eigen Vector\n    ")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0 table-responsive" }, [
@@ -97301,7 +97214,7 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("PV")])
+              _c("th", { staticClass: "text-center" }, [_vm._v("EV")])
             ],
             2
           )
@@ -97472,7 +97385,7 @@ var render = function() {
                 attrs: { rowspan: _vm.criterias.length + 1 }
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("PV")]),
+              _c("th", { staticClass: "text-center" }, [_vm._v("EV")]),
               _vm._v(" "),
               _c("td", {
                 staticClass: "text-center",
@@ -97720,15 +97633,17 @@ var render = function() {
       _vm._v("\n        Step 5 - Pengujian Konsistensi\n    ")
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "p-3 bg-light" }, [
+      _vm._v("\n        Perhitungan Weight Sum Vector \n    ")
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "p",
         [
-          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
           _vm._v(" "),
           _vm._l(_vm.criterias, function(item, index) {
             return _c("span", { key: item.id }, [
@@ -97748,7 +97663,7 @@ var render = function() {
       _c(
         "p",
         [
-          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
           _vm._v(" "),
           _vm._l(_vm.lambda, function(item, index) {
             return _c("span", { key: index }, [
@@ -97764,7 +97679,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("p", [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.lambdaTotal) +
@@ -97776,10 +97691,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(1),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(3),
+      _vm._m(2),
       _vm._v(" "),
       _c("p", [
         _c("span", { staticClass: "font-weight-bold" }, [_vm._v("CI = ")]),
@@ -97801,7 +97716,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(4),
+    _vm._m(3),
     _vm._v(" "),
     _c("div", { staticClass: "table-responsive" }, [
       _c("table", { staticClass: "table mb-0" }, [
@@ -97862,10 +97777,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _vm._m(4),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(6),
+      _vm._m(5),
       _vm._v(" "),
       _c("p", [
         _c("span", { staticClass: "font-weight-bold" }, [_vm._v("CR = ")]),
@@ -97902,18 +97817,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-3 bg-light" }, [
-      _vm._v("\n        Perhitungan Weight Sum Vector "),
-      _c("b", [_vm._v("( λ maksimum )")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("p", [
       _c("span", { staticClass: "font-weight-bold" }, [
-        _vm._v("λmax = ( Hasil kali matriks / PV ) / n ")
+        _vm._v("W = ( Hasil kali matriks / EV ) / n ")
       ])
     ])
   },
@@ -97932,7 +97838,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("span", { staticClass: "font-weight-bold" }, [
-        _vm._v("CI = (λmax - n) / (n - 1) ")
+        _vm._v("CI = (W - n) / (n - 1) ")
       ])
     ])
   },
@@ -98383,7 +98289,7 @@ var content = __webpack_require__(228);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("476c2b8d", content, false, {});
+var update = __webpack_require__(7)("861ba640", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -98407,7 +98313,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.pointer[data-v-c35192f0] {\n  cursor: pointer;\n}\n.matrix-value[data-v-c35192f0]:hover {\n  background-color: #bee5eb;\n}\n", ""]);
+exports.push([module.i, "\n.pointer[data-v-c35192f0] {\n  cursor: pointer;\n}\n.matrix-value[data-v-c35192f0]:hover {\n  background-color: #28A745;\n}\n", ""]);
 
 // exports
 
@@ -99173,7 +99079,7 @@ var render = function() {
                     attrs: { click: _vm.analyze }
                   },
                   [
-                    _vm._v("\n                            Lihat Analisa "),
+                    _vm._v("\n                            Hitung "),
                     _c("i", {
                       staticClass: "fas ml-1",
                       class: [
@@ -99368,8 +99274,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: labels,
                 datasets: [{
                     label: 'Kriteria',
-                    borderColor: '#bee5eb',
-                    backgroundColor: '#bee5eb',
+                    borderColor: '#28A745',
+                    backgroundColor: '#28A745',
                     data: value
                 }]
             };
@@ -99892,7 +99798,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n        Step 3 - Priority Vector\n    ")
+      _vm._v("\n        Step 3 - Eigen Vector\n    ")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0 table-responsive" }, [
@@ -99909,7 +99815,7 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("PV")])
+              _c("th", { staticClass: "text-center" }, [_vm._v("EV")])
             ],
             2
           )
@@ -100099,7 +100005,7 @@ var render = function() {
                 [_vm._v("\n                        x\n                    ")]
               ),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("PV")]),
+              _c("th", { staticClass: "text-center" }, [_vm._v("EV")]),
               _vm._v(" "),
               _c(
                 "td",
@@ -100352,15 +100258,17 @@ var render = function() {
       _vm._v("\n        Step 5 - Pengujian Konsistensi\n    ")
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "p-3 bg-light" }, [
+      _vm._v("\n        Perhitungan Weight Sum Vector \n    ")
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "p",
         [
-          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
           _vm._v(" "),
           _vm._l(_vm.alternatives, function(item, index) {
             return _c("span", { key: item.id }, [
@@ -100380,7 +100288,7 @@ var render = function() {
       _c(
         "p",
         [
-          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+          _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
           _vm._v(" "),
           _vm._l(_vm.lambda, function(item, index) {
             return _c("span", { key: index }, [
@@ -100396,7 +100304,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("p", [
-        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("λmax = ")]),
+        _c("span", { staticClass: "font-weight-bold" }, [_vm._v("W = ")]),
         _vm._v(
           "\n            " +
             _vm._s(_vm.lambdaTotal) +
@@ -100408,10 +100316,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(2),
+    _vm._m(1),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(3),
+      _vm._m(2),
       _vm._v(" "),
       _c("p", [
         _c("span", { staticClass: "font-weight-bold" }, [_vm._v("CI = ")]),
@@ -100433,7 +100341,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(4),
+    _vm._m(3),
     _vm._v(" "),
     _c("div", { staticClass: "table-responsive" }, [
       _c("table", { staticClass: "table mb-0" }, [
@@ -100494,10 +100402,10 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(5),
+    _vm._m(4),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _vm._m(6),
+      _vm._m(5),
       _vm._v(" "),
       _c("p", [
         _c("span", { staticClass: "font-weight-bold" }, [_vm._v("CR = ")]),
@@ -100534,18 +100442,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-3 bg-light" }, [
-      _vm._v("\n        Perhitungan Weight Sum Vector "),
-      _c("b", [_vm._v("( λ maksimum )")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("p", [
       _c("span", { staticClass: "font-weight-bold" }, [
-        _vm._v("λmax = ( Hasil kali matriks / PV ) / n ")
+        _vm._v("W = ( Hasil kali matriks / EV ) / n ")
       ])
     ])
   },
@@ -100564,7 +100463,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("span", { staticClass: "font-weight-bold" }, [
-        _vm._v("CI = (λmax - n) / (n - 1) ")
+        _vm._v("CI = (W - n) / (n - 1) ")
       ])
     ])
   },
@@ -100846,8 +100745,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 labels: labels,
                 datasets: [{
                     label: 'Alternatif',
-                    borderColor: '#bee5eb',
-                    backgroundColor: '#bee5eb',
+                    borderColor: '#28A745',
+                    backgroundColor: '#28A745',
                     data: value
                 }]
             };
@@ -101300,7 +101199,7 @@ var content = __webpack_require__(258);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(7)("b2c97d8a", content, false, {});
+var update = __webpack_require__(7)("9afed3f0", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -102398,8 +102297,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             labels: labels,
             datasets: [{
                 label: 'Alternatif',
-                borderColor: '#bee5eb',
-                backgroundColor: '#bee5eb',
+                borderColor: '#28A745',
+                backgroundColor: '#28A745',
                 data: value
             }]
         };

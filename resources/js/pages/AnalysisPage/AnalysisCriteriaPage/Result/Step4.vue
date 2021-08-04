@@ -9,7 +9,7 @@
                     <tr class="table-info">
                         <th class="text-center" :colspan="criterias.length">Matriks</th>
                         <td class="text-center" :rowspan="criterias.length + 1"></td>
-                        <th class="text-center">PV</th>
+                        <th class="text-center">EV</th>
                         <td class="text-center" :rowspan="criterias.length + 1"></td>
                         <th class="text-center">Hasil</th>
                     </tr>

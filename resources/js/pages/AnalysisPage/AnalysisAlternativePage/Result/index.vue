@@ -85,8 +85,8 @@ export default {
                 datasets: [
                     {
                         label : 'Kriteria',
-                        borderColor : '#bee5eb',
-                        backgroundColor : '#bee5eb',
+                        borderColor : '#28A745',
+                        backgroundColor : '#28A745',
                         data : value
                     },
                 ]

@@ -89,7 +89,7 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <btn-default class="ml-auto btn-block-xs" :click="analyze">
-                                Lihat Analisa <i class="fas ml-1" :class="[analiting ? 'fa-spinner fa-spin' : 'fa-chevron-circle-right']"></i>
+                                Hitung <i class="fas ml-1" :class="[analiting ? 'fa-spinner fa-spin' : 'fa-chevron-circle-right']"></i>
                             </btn-default>
                         </div>
                     </div>
@@ -217,6 +217,6 @@ export default {
     }
 
     .matrix-value:hover {
-        background-color: #bee5eb;
+        background-color: #28A745;
     }
 </style>

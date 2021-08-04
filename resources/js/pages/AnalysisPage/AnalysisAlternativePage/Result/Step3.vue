@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            Step 3 - Priority Vector
+            Step 3 - Eigen Vector
         </div>
         <div class="card-body p-0 table-responsive">
             <table class="table table-hover">
@@ -9,7 +9,7 @@
                     <tr>
                         <td class="text-center font-weight-bold">Alt<span class="d-none d-sm-inline">ernatif</span></td>
                         <th class="text-center" v-for="item in alternatives" :key="item.id">{{ item.code }}</th>
-                        <th class="text-center">PV</th>
+                        <th class="text-center">EV</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -4,22 +4,22 @@
             Step 5 - Pengujian Konsistensi
         </div>
         <div class="p-3 bg-light">
-            Perhitungan Weight Sum Vector <b>( λ maksimum )</b>
+            Perhitungan Weight Sum Vector 
         </div>
         <div class="card-body">
             <p>
-                <span class="font-weight-bold">λmax = ( Hasil kali matriks / PV ) / n </span>
+                <span class="font-weight-bold">W = ( Hasil kali matriks / EV ) / n </span>
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 <span v-for="(item, index) in alternatives" :key="item.id">({{ result[index] }} / {{ item.pv }}) <span v-if="index < alternatives.length - 1"> + </span> </span> / {{ alternatives.length }}
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 <span v-for="(item, index) in lambda" :key="index">{{ item }} <span v-if="index < lambda.length - 1"> + </span> </span> / {{ alternatives.length }}
             </p>
             <p>
-                <span class="font-weight-bold">λmax = </span>
+                <span class="font-weight-bold">W = </span>
                 {{ lambdaTotal }} / {{ alternatives.length }} = <b><u>{{ lambdaMax }}</u></b>
             </p>
         </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
             <p>
-                <span class="font-weight-bold">CI = (λmax - n) / (n - 1) </span>
+                <span class="font-weight-bold">CI = (W - n) / (n - 1) </span>
             </p>
             <p>
                 <span class="font-weight-bold">CI = </span>
@@ -47,11 +47,15 @@
                 <tbody>
                     <tr>
                         <td class="table-info text-center font-weight-bold">n</td>
-                        <td class="text-center" :class="{ 'table-secondary font-weight-bold': item.n == ir.n }" v-for="item in indexRandom" :key="item.n">{{ item.n }}</td>
+                        <td class="text-center" 
+                        :class="{ 'table-secondary font-weight-bold': item.n == ir.n }" 
+                        v-for="item in indexRandom" :key="item.n">{{ item.n }}</td>
                     </tr>
                     <tr>
                         <td class="table-info text-center font-weight-bold">IR</td>
-                        <td class="text-center" :class="{ 'table-secondary  font-weight-bold': item.ir == ir.value }" v-for="item in indexRandom" :key="item.n">{{ item.ir }}</td>
+                        <td class="text-center" 
+                        :class="{ 'table-secondary  font-weight-bold': item.ir == ir.value }" 
+                        v-for="item in indexRandom" :key="item.n">{{ item.ir }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -102,6 +106,7 @@ export default {
         ci: function () {
             return (this.lambdaMax - this.alternatives.length).toFixed(5) / (this.alternatives.length - 1)
         },
+        //Mencari Index Random
         ir: function () {
             let index = this.indexRandom.filter(item => {
                 return item.n == this.alternatives.length
