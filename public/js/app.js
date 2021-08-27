@@ -97179,6 +97179,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -97197,7 +97213,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n        Step 3 - Eigen Vector\n    ")
+      _vm._v("\n        Step 3 - Mencari Rata Rata\n    ")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0 table-responsive" }, [
@@ -97210,11 +97226,15 @@ var render = function() {
               _vm._v(" "),
               _vm._l(_vm.criterias, function(item) {
                 return _c("th", { key: item.id, staticClass: "text-center" }, [
-                  _vm._v(_vm._s(item.code))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(item.code) +
+                      "\n                    "
+                  )
                 ])
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("EV")])
+              _c("th", { staticClass: "text-center" }, [_vm._v("Rata - Rata")])
             ],
             2
           )
@@ -97228,21 +97248,37 @@ var render = function() {
               { key: criteria.id },
               [
                 _c("th", { staticClass: "text-center table-info" }, [
-                  _vm._v(_vm._s(criteria.code))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(criteria.code) +
+                      "\n                    "
+                  )
                 ]),
                 _vm._v(" "),
                 _vm._l(criteria.comparisons, function(comparison) {
                   return _c(
                     "td",
                     { key: comparison.id, staticClass: "text-center" },
-                    [_vm._v(_vm._s(comparison.normalization_value))]
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(comparison.normalization_value) +
+                          "\n                    "
+                      )
+                    ]
                   )
                 }),
                 _vm._v(" "),
                 _c(
                   "td",
                   { staticClass: "text-center bg-light font-weight-bold" },
-                  [_vm._v(_vm._s(criteria.pv))]
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(criteria.pv) +
+                        "\n                    "
+                    )
+                  ]
                 )
               ],
               2
@@ -97385,7 +97421,7 @@ var render = function() {
                 attrs: { rowspan: _vm.criterias.length + 1 }
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("EV")]),
+              _c("th", { staticClass: "text-center" }, [_vm._v("RATA - RATA")]),
               _vm._v(" "),
               _c("td", {
                 staticClass: "text-center",
@@ -97819,7 +97855,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("span", { staticClass: "font-weight-bold" }, [
-        _vm._v("W = ( Hasil kali matriks / EV ) / n ")
+        _vm._v("W = ( Hasil kali matriks / Rata - Rata ) / n ")
       ])
     ])
   },
@@ -99798,7 +99834,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("\n        Step 3 - Eigen Vector\n    ")
+      _vm._v("\n        Step 3 - Mencari Rata Rata\n    ")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0 table-responsive" }, [
@@ -99815,7 +99851,7 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("EV")])
+              _c("th", { staticClass: "text-center" }, [_vm._v("Rata - Rata")])
             ],
             2
           )
@@ -100005,7 +100041,7 @@ var render = function() {
                 [_vm._v("\n                        x\n                    ")]
               ),
               _vm._v(" "),
-              _c("th", { staticClass: "text-center" }, [_vm._v("EV")]),
+              _c("th", { staticClass: "text-center" }, [_vm._v("Rata - Rata")]),
               _vm._v(" "),
               _c(
                 "td",
@@ -100195,6 +100231,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -100222,6 +100262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ci: function ci() {
             return (this.lambdaMax - this.alternatives.length).toFixed(5) / (this.alternatives.length - 1);
         },
+        //Mencari Index Random
         ir: function ir() {
             var _this2 = this;
 
