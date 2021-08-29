@@ -42,6 +42,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('analysis/result')) ? 'active' : '' }}" href="{{ url('analysis/result') }}">Rekomendasi Sparepart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('analysis/alternatives')) ? 'active' : '' }}" href="{{ url('analysis/alternatives') }}">Perhitungan Alternatif</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ Route::is('login') ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
